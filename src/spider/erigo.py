@@ -1,7 +1,10 @@
 from typing import Any
 from httpx import Client
+from bs4 import BeautifulSoup
 
-class ErigoScrap(object):
+from spider.helper import FileHelper
+
+class ErigoScrap(FileHelper):
     def __init__(self, search_query) -> None:
         self.search_query = search_query
         self.eri_url: str = "https://erigostore.co.id/"
@@ -16,7 +19,10 @@ class ErigoScrap(object):
         headers: dict[str, Any] = self.user_agent.copy()  # Correct way to copy headers
 
         # Request to website
-        response = self.client.get(self.eri_url, params=params, headers=headers)  # Corrected the URL variable
+        response = self.client.get(self.eri_url, params=params, headers=headers)  
+
+        # Save hasil response ke html agar bisa debugging
+        self.writetmpfile(file_name="response.html", data=response.text)
 
         # Handle response (Example)
         if response.status_code == 200:
