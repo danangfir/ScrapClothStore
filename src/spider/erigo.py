@@ -7,7 +7,7 @@ from spider.helper import FileHelper
 class ErigoScrap(FileHelper):
     def __init__(self, search_query) -> None:
         self.search_query = search_query
-        self.eri_url: str = "https://erigostore.co.id/"
+        self.eri_url: str = "https://erigostore.co.id/collections/all-shirt"
         self.client = Client()  # Corrected the case
         self.user_agent = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
 
@@ -34,4 +34,4 @@ class ErigoScrap(FileHelper):
             return None
 
 
-        
+
