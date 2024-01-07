@@ -24,6 +24,9 @@ class ErigoScrap(FileHelper):
         # Save hasil response ke html agar bisa debugging
         self.writetmpfile(file_name="response.html", data=response.text)
 
+        html_content = "<html>...data yang diambil...</html>"  # Contoh konten HTML
+        return html_content
+
         # Handle response (Example)
         if response.status_code == 200:
             return response.text

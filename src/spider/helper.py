@@ -8,6 +8,6 @@ class FileHelper(object):
             file_name(str): _description
             data(Union[str, bytes]): _description_
         """
-        with open(file_name, "wb" if isinstance(data, bytes) else "w", encodin='UTF-8') as file:
+        with open(file_name, "wb" if isinstance(data, bytes) else "w", encoding='UTF-8') as file:
             file.write(data)
             
