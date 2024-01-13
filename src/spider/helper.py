@@ -11,3 +11,4 @@ class FileHelper(object):
         with open(file_name, "wb" if isinstance(data, bytes) else "w", encoding='UTF-8') as file:
             file.write(data)
             
+            
