@@ -1,10 +1,12 @@
+# Define here the models for your scraped items
+#
+# See documentation in:
+# https://docs.scrapy.org/en/latest/topics/items.html
+
 import scrapy
 
-class ErigoCloth(scrapy.Spider):
-    name = "Cloth"
-    allowed_domains = ['https://erigostore.co.id/']
-    start_urls = ["https://erigostore.co.id/collections/all-shirt"]
-    
-    def parse(self, response):
-        urls = response.css
-    
+
+class ScrapErigoItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    pass
