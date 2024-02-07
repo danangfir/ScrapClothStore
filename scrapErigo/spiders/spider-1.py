@@ -1,23 +1,28 @@
 import scrapy
-from scrapErigo.items import scrapErigoItem
+from scrapErigo.itemloaders import scrapErigoLoaders
+from scrapErigo.items import scrapErigoProduct
 
 class ErigoScrap(scrapy.Spider):
+    # the name of spider
     name = 'scrapErigo'
     allowed_domains = ['erigostore.co.id']
+    # these are urls that we will start scraping
     start_urls = ['https://erigostore.co.id/collections/all-shirt']
     
     def parse(self, response):
         products = response.css('li.product')
         
-        product_item = scrapErigoItem
+        product_item = scrapErigoProduct()
         for product in products:
             
-            product_item['name'] = product.css('a.card-title::text').get(),
-            product_item['price'] = product.css('span.price-item::text').get(),
-            product_item['url'] = product.css('a.card-title::attr(href)').get(),  # Pastikan selector ini benar
-            yield product_item
+            erigo = scrapErigoLoaders(item=scrapErigoProduct(), selector=product)
+            erigo.add_css('name',"a.card-title::text"),
+            erigo.add_css('price','span.price-item::text'),
+            erigo.add_css('url','a.card-title::attr(href)'),
+            yield erigo.load_item()
             
         next_page = response.css('[rel="next"] ::attr(href)').get()
+        
         if next_page is not None:
             next_page_url = response.urljoin(next_page)
             yield response.follow(next_page_url, callback=self.parse)
