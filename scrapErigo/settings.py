@@ -65,6 +65,7 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
     "scrapErigo.pipelines.priceToUsPipeline": 100,
     "scrapErigo.pipelines.DuplicatesPipeline": 200,
+    "scrapErigo.pipelines.SavingToMySQLPipelines": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
